@@ -4,6 +4,22 @@
     </head>
     <body></body>
     <script>
+        computer_play();
+        function myChoice(){
+            console.log(prompt("Rock, Paper, or Scissors?"));
+        }
+        function computer_play() {
+            let choice=(10*Math.random());
+            choice=choice-choice%1;
+            if (choice>6){
+                console.log("rock");
+            }
+            else if(choice>3){
+                console.log("paper");
+            }
+            else
+            console.log("scissors");
+        }
         
     </script>
     </html>
