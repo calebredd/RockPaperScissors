@@ -2,24 +2,117 @@
     <head>
         <title>Rock-Paper-Scissors</title>
     </head>
-    <body></body>
+    <style>
+        body{
+            border:20px solid black;
+            background:antiquewhite;
+            text-align: center;
+            padding-top:15%;
+            position:relative;
+            bottom:0;
+        }
+        .pics{
+            width:100%;
+            max-width:100%;
+        }
+        .class{
+            padding:5%;
+        }
+        button{
+            font-style:oblique;
+            font-size: 20px;
+            color:purple;
+            background: greenyellow;
+            width:20%;
+            height:10%;
+            margin:4%;
+        }
+        .imgBtn{
+            max-width:33%;
+        }
+    </style>
+    <body>
+        <h1>Rock Paper Scissors!!!</h1>
+        <!--<h2>Press the button to Play Again</h2>
+        <button onclick="roundOne()"><b>Now!</b></button>-->
+        <div class="score">
+            Your Score:
+                <span id="yourScore">
+                    0
+                </span>
+            Computer's Score:
+                <span id="compScore">
+                    0
+                </span>
+        </div>
+        <div class="pics">
+            <img class="imgBtn" onclick="round('rock')" src="https://upload.wikimedia.org/wikipedia/commons/0/01/What_is_your_problem%2C_graffiti_rock_-_Flickr_-_daveynin.jpg" alt="rock">
+            <img class="imgBtn" onclick="round('paper')" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSxMhy9MOhbrX7_ayxg1qSGTi5tWDDqJWoz3MlrNJJEbXOCHDz" alt="paper">
+            <img class="imgBtn" onclick="round('scissors')" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzXzo2Uw2EqGvC__0Gh7HI_7Md0l3nQb3iJ832hvXQsTD2bScn6g" alt="scissors">
+        </div>
+    </body>
     <script>
-        computer_play();
+        function round(a){
+            let mine=a;
+            let comp=computer_play();
+            alert("The computer picked "+comp+".");
+            if(mine==comp){
+                alert("It's a tie, try again");
+            }
+            else if((mine=="rock"&&comp=="scissors")||(mine=="paper"&&comp=="rock")||(mine=="scissors"&&comp=="paper")){
+                alert(mine+" beats "+comp+", you win!");
+                plusOne();
+            }
+            else{
+                alert(comp+" beats "+mine+", you lose.");
+                minusOne();
+            }
+        }
+        function plusOne(){
+            let score=Number(document.getElementById("yourScore").innerHTML)+1;
+            document.getElementById("yourScore").innerHTML=score;
+            if (score==3) {
+                alert("You were the first one to 3 points, congratulations!");
+                document.getElementById("yourScore").innerHTML=0;
+                document.getElementById("compScore").innerHTML=0;
+            }
+        }
+        function minusOne(){
+            let score=Number(document.getElementById("compScore").innerHTML)+1;
+            document.getElementById("compScore").innerHTML=score;
+            if(score==3){
+                alert("The computer was the first one to 3 points, GAME OVER");
+                document.getElementById("yourScore").innerHTML=0;
+                document.getElementById("compScore").innerHTML=0;
+            }
+        }
         function myChoice(){
-            console.log(prompt("Rock, Paper, or Scissors?"));
+            let select=prompt("Rock, Paper, or Scissors?");
+            select=select.toLowerCase();
+            if (select=="rock" || select=="paper" || select=="scissors"){
+                console.log(select);
+                return select;
+            }
+            else{
+                alert("Input must be either \"rock\", \"paper\", or \"scissors\".");
+                select=myChoice();
+                return select;
+            }
         }
         function computer_play() {
             let choice=(10*Math.random());
-            choice=choice-choice%1;
+            choice-=choice%1;
             if (choice>6){
                 console.log("rock");
+                return "rock";
             }
             else if(choice>3){
                 console.log("paper");
+                return "paper";
             }
             else
-            console.log("scissors");
+                console.log("scissors");
+                return "scissors";
         }
-        
     </script>
     </html>
