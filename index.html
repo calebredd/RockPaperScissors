@@ -7,14 +7,25 @@
             border:20px solid black;
             background:antiquewhite;
             text-align: center;
-            padding-top:15%;
-            position:relative;
-            bottom:0;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content: space-evenly;
+        }
+        .score{
+            font-size:1.5rem;
+            font-weight:bold;
         }
         .pics{
             width:100%;
-            max-width:100%;
+            display:flex;
+            justify-content: space-evenly;
+        padding:50px 0;    
         }
+            img{
+                width:30%;
+                border:2px solid black;
+            }
         .class{
             padding:5%;
         }
@@ -81,7 +92,7 @@
             let score=Number(document.getElementById("compScore").innerHTML)+1;
             document.getElementById("compScore").innerHTML=score;
             if(score==3){
-                alert("The computer was the first one to 3 points, GAME OVER");
+                alert("The computer was the first one to 3 points, GAME OVER!");
                 document.getElementById("yourScore").innerHTML=0;
                 document.getElementById("compScore").innerHTML=0;
             }
